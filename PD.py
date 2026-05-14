@@ -26,9 +26,12 @@ plt.figure()
 
 sn.distplot(dt["total_bill"], kde=False)
 plt.figure()
+
 sn.distplot(dt["total_bill"], hist=False)
 plt.figure()
+
 sn.distplot(dt["total_bill"], bins=20)
 plt.figure()
+
 sn.distplot(dt["total_bill"], color="green")
 plt.show()
