@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd 
 
 plt.style.use("seaborn-v0_8")
-
 d=sn.load_dataset("titanic")
 print(d.head())
 
