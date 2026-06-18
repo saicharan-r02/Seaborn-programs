@@ -5,6 +5,7 @@ import pandas as pd
 
 plt.style.use("seaborn-v0_8")
 d=sn.load_dataset("penguins")
+
 print(d.head())
 
 sn.catplot(x="species", y="body_mass_g", kind="strip", data=d)
