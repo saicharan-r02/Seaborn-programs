@@ -1,22 +1,22 @@
 def isPalindrome(x):
     return str(x)==str(x)[::-1] 
     
-print(isPalindrome(123))
-print(isPalindrome(424))
-print(isPalindrome(-121))
-print(isPalindrome(232))
+print("On 123",isPalindrome(123))
+print("On 424",isPalindrome(424))
+print("On -121",isPalindrome(-121))
+print("On 232",isPalindrome(232))
 
-print(isPalindrome(999))
-print(isPalindrome(-333))
-print(isPalindrome(9929))
-print(isPalindrome(20202))
+print("On 999",isPalindrome(999))
+print("On -333",isPalindrome(-333))
+print("On 9929",isPalindrome(9929))
+print("On 20202",isPalindrome(20202))
 
-print(isPalindrome(-3953))
-print(isPalindrome(-2))
-print(isPalindrome(9))
-print(isPalindrome(88998))
+print("On -3953",isPalindrome(-3953))
+print("On -2",isPalindrome(-2))
+print("On 9",isPalindrome(9))
+print("On 88998",isPalindrome(88998))
 
-print(isPalindrome(100))
-print(isPalindrome(3459))
-print(isPalindrome(19941))
-print(isPalindrome(04))
+print("On 100",isPalindrome(100))
+print("On 3459",isPalindrome(3459))
+print("On 19941",isPalindrome(19941))
+print("On O4",isPalindrome(04))
