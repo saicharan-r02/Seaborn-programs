@@ -4,15 +4,15 @@ import numpy as np
 import pandas as pd 
 
 plt.style.use("seaborn-v0_8")
-d=sn.load_dataset("titanic")
-print(d.head())
+a=sn.load_dataset("titanic")
+print(a.head())
 
-sn.jointplot(x="age",y="fare",data=d)
-sn.jointplot(x="age",y="fare",hue="survived",data=d)
-sn.jointplot(x="age",y="fare",kind="kde",data=d)
-sn.jointplot(x="age",y="fare",kind="hex",data=d)
-sn.jointplot(x="age",y="fare",kind="reg",data=d)
+sn.jointplot(x="age",y="fare",data=a)
+sn.jointplot(x="age",y="fare",hue="survived",data=a)
+sn.jointplot(x="age",y="fare",kind="kde",data=a)
+sn.jointplot(x="age",y="fare",kind="hex",data=a)
+sn.jointplot(x="age",y="fare",kind="reg",data=a)
 
-dt= d.dropna(subset=["age", "fare"])
+dt= a.dropna(subset=["age","fare"])
 sn.jointplot(x="age",y="fare",data=dt)
 plt.show()
