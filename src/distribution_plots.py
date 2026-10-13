@@ -17,7 +17,6 @@ def plot_salary_distributions(df: pd.DataFrame) -> str:
 
     fig, axes = plt.subplots(2, 1, figsize=(13, 11), gridspec_kw={"height_ratios": [1, 1.2]})
 
-    # 1. KDE Density Plot by Experience Level
     exp_order = ["Entry-Level", "Mid-Level", "Senior", "Lead / Principal", "Executive"]
     palette_exp = sns.color_palette("mako", n_colors=len(exp_order))
 
@@ -39,7 +38,6 @@ def plot_salary_distributions(df: pd.DataFrame) -> str:
     axes[0].legend(title="Experience Tier", frameon=True, facecolor="white", framealpha=0.9, loc="upper right")
     axes[0].set_xlim(30, 380)
 
-    # 2. Boxen Plot of Total Compensation Across Job Roles
     role_order = df.groupby("job_title")["total_compensation"].median().sort_values(ascending=False).index
 
     sns.boxenplot(
@@ -53,7 +51,6 @@ def plot_salary_distributions(df: pd.DataFrame) -> str:
         ax=axes[1]
     )
 
-    # Format x-axis as $k
     axes[1].xaxis.set_major_formatter(lambda x, pos: f"${int(x/1000)}k")
     axes[1].set_title("B. Total Compensation Distribution (Base + Equity) by Specialized Tech Role", fontsize=13, fontweight="bold", pad=10)
     axes[1].set_xlabel("Total Annual Compensation (USD)", fontsize=11, fontweight="bold")
