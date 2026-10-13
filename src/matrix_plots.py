@@ -15,7 +15,6 @@ def plot_matrix_and_clustermaps(df: pd.DataFrame) -> tuple[str, str]:
     sns.set_theme(style="white")
     plt.rcParams.update({"figure.dpi": 300})
 
-    # 1. Clustermap: Median Salary by Role vs Primary Skill
     pivot_matrix = df.pivot_table(
         index="job_title",
         columns="primary_skill",
@@ -42,12 +41,10 @@ def plot_matrix_and_clustermaps(df: pd.DataFrame) -> tuple[str, str]:
     plt.close()
     print(f"[OK] Saved Clustermap to: {path_cluster}")
 
-    # 2. Correlation Matrix Heatmap
     num_cols = ["years_experience", "salary_in_usd", "equity_grant_usd", "total_compensation",
                 "work_life_balance_rating", "career_growth_rating"]
     corr_matrix = df[num_cols].corr()
 
-    # Pretty labels
     pretty_labels = ["Experience (Yrs)", "Base Salary", "Equity Grant", "Total Comp", "WLB Rating", "Growth Rating"]
 
     plt.figure(figsize=(8.5, 7))
