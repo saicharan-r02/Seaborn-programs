@@ -17,7 +17,6 @@ def plot_categorical_insights(df: pd.DataFrame) -> str:
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-    # 1. Violin Plot: Salary by Work Setting & Experience Tier
     exp_filtered = df[df["experience_level"].isin(["Mid-Level", "Senior", "Lead / Principal"])]
     sns.violinplot(
         data=exp_filtered,
@@ -35,7 +34,6 @@ def plot_categorical_insights(df: pd.DataFrame) -> str:
     axes[0].set_ylabel("Annual Base Salary (USD)", fontsize=10, fontweight="bold")
     axes[0].legend(title="Experience", frameon=True, loc="upper right")
 
-    # 2. Grouped Barplot: Satisfaction Ratings
     melted_ratings = df.melt(
         id_vars=["work_setting"],
         value_vars=["work_life_balance_rating", "career_growth_rating"],
