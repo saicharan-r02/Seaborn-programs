@@ -4,10 +4,7 @@ import datetime
 
 FIGURES_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "figures")
 
-def generate_visual_storyboard_html(df: pd.DataFrame) -> str:
-    """
-    Builds a standalone, responsive HTML visual storytelling dashboard.
-    """
+def generate_visual_storyboard_html(df: pd.DataFrame) -> str
     os.makedirs(FIGURES_DIR, exist_ok=True)
     report_file = os.path.join(FIGURES_DIR, "visual_storyboard.html")
 
@@ -18,7 +15,6 @@ def generate_visual_storyboard_html(df: pd.DataFrame) -> str:
     remote_wlb = df[df["work_setting"] == "Fully Remote"]["work_life_balance_rating"].mean()
     office_wlb = df[df["work_setting"] == "In-Office"]["work_life_balance_rating"].mean()
 
-    # Role breakdown table
     role_stats = df.groupby("job_title").agg(
         Count=("employee_id", "count"),
         Median_Base=("salary_in_usd", "median"),
