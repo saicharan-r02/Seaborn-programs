@@ -2,13 +2,10 @@ import os
 import numpy as np
 import pandas as pd
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
-DATA_FILE = os.path.join(DATA_DIR, "global_tech_salaries.csv")
+DATA_DIR=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"data")
+DATA_FILE=os.path.join(DATA_DIR,"global_tech_salaries.csv")
 
 def generate_tech_salary_dataset(n_records: int = 2500, random_state: int = 42) -> pd.DataFrame:
-    """
-    Generates a realistic global tech compensation and workforce trends dataset.
-    """
     np.random.seed(random_state)
     os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -24,7 +21,6 @@ def generate_tech_salary_dataset(n_records: int = 2500, random_state: int = 42) 
     exp_weights = [0.18, 0.35, 0.32, 0.12, 0.03]
     selected_exp = np.random.choice(experience_levels, size=n_records, p=exp_weights)
 
-    # Years of experience mapped roughly to tier
     yoe_map = {
         "Entry-Level": (1, 3),
         "Mid-Level": (3, 6),
@@ -93,12 +89,10 @@ def generate_tech_salary_dataset(n_records: int = 2500, random_state: int = 42) 
         salary_usd = int(np.clip(raw_salary, 42000, 395000))
         salaries.append(salary_usd)
 
-        # Equity grant
         eq_prob = 0.85 if exp in ["Senior", "Lead / Principal", "Executive"] else 0.45
         equity = int(salary_usd * np.random.uniform(0.1, 0.45)) if np.random.rand() < eq_prob else 0
         equities.append(equity)
 
-        # Skill selection
         if role in ["AI Research Scientist", "ML Engineer"]:
             skill = np.random.choice(["PyTorch / TensorFlow", "Python & SQL"], p=[0.75, 0.25])
         elif role in ["Cloud Architect", "DevOps Engineer"]:
@@ -109,7 +103,6 @@ def generate_tech_salary_dataset(n_records: int = 2500, random_state: int = 42) 
             skill = np.random.choice(skills)
         primary_skills.append(skill)
 
-        # Ratings
         wlb = np.clip(np.random.normal(3.8 if setting == "Fully Remote" else 3.3, 0.7), 1.0, 5.0).round(1)
         growth = np.clip(np.random.normal(3.7, 0.65), 1.0, 5.0).round(1)
         wlb_ratings.append(wlb)
@@ -136,7 +129,6 @@ def generate_tech_salary_dataset(n_records: int = 2500, random_state: int = 42) 
     return df
 
 def load_salary_data() -> pd.DataFrame:
-    """Loads tech salary dataset."""
     if not os.path.exists(DATA_FILE):
         return generate_tech_salary_dataset()
     return pd.read_csv(DATA_FILE)
