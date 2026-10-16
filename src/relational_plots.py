@@ -5,19 +5,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-FIGURES_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "figures")
+FIGURES_DIR=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"figures")
 
 def plot_relational_trajectories(df: pd.DataFrame) -> str:
-    """
-    Generates relational scatter plots with regression trendlines and confidence bands.
-    """
     os.makedirs(FIGURES_DIR, exist_ok=True)
     sns.set_theme(style="whitegrid")
     plt.rcParams.update({"figure.dpi": 300})
 
-    fig, axes = plt.subplots(1, 2, figsize=(15, 6.5))
-
-    # 1. Experience vs. Salary by Company Size with Regplot
+    fig, axes = plt.subplots(1, 2, figsize=(15,6.5))
     sns.scatterplot(
         data=df,
         x="years_experience",
@@ -41,10 +36,9 @@ def plot_relational_trajectories(df: pd.DataFrame) -> str:
     axes[0].set_title("A. Experience vs. Base Salary by Company Scale", fontsize=12, fontweight="bold", pad=10)
     axes[0].set_xlabel("Years of Industry Experience", fontsize=10, fontweight="bold")
     axes[0].set_ylabel("Annual Base Salary (USD)", fontsize=10, fontweight="bold")
-    axes[0].legend(title="Company Size", frameon=True, loc="upper left")
+    axes[0].legend(title="Company Size", frameon=True,loc="upper left")
 
-    # 2. Total Comp vs Equity Trajectory by Role
-    top_roles = ["AI Research Scientist", "ML Engineer", "Cloud Architect", "Software Engineer"]
+    top_roles=["AI Research Scientist","ML Engineer","Cloud Architect","Software Engineer"]
     df_top = df[df["job_title"].isin(top_roles)]
 
     sns.lineplot(
