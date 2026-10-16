@@ -5,38 +5,34 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-FIGURES_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "figures")
+FIGURES_DIR=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"figures")
 
-def plot_matrix_and_clustermaps(df: pd.DataFrame) -> tuple[str, str]:
-    """
-    Generates Hierarchical Clustermaps and Correlation Heatmaps.
-    """
-    os.makedirs(FIGURES_DIR, exist_ok=True)
+def plot_matrix_and_clustermaps(df: pd.DataFrame) -> tuple[str,str]:
+    os.makedirs(FIGURES_DIR,exist_ok=True)
     sns.set_theme(style="white")
     plt.rcParams.update({"figure.dpi": 300})
 
-    pivot_matrix = df.pivot_table(
+    pivot_matrix=df.pivot_table(
         index="job_title",
         columns="primary_skill",
         values="salary_in_usd",
         aggfunc="median"
-    ).fillna(df["salary_in_usd"].median()) / 1000
+    ).fillna(df["salary_in_usd"].median())/1000
 
-    cluster_grid = sns.clustermap(
+    cluster_grid=sns.clustermap(
         pivot_matrix,
         cmap="mako",
         annot=True,
         fmt=".0f",
         linewidths=0.7,
         cbar_kws={"label": "Median Salary ($k USD)"},
-        figsize=(11, 9),
-        dendrogram_ratio=(0.15, 0.15),
-        cbar_pos=(0.02, 0.8, 0.03, 0.15)
+        figsize=(11,9),
+        dendrogram_ratio=(0.15,0.15),
+        cbar_pos=(0.02,0.8,0.03,0.15)
     )
-    cluster_grid.fig.suptitle("Hierarchical Clustering of Tech Roles & Skill Premiums ($k USD)",
-                              fontsize=13, fontweight="bold", y=0.98)
+    cluster_grid.fig.suptitle("Hierarchical Clustering of Tech Roles & Skill Premiums ($k USD)",               fontsize=13,fontweight="bold",y=0.98)
     
-    path_cluster = os.path.join(FIGURES_DIR, "04_skills_compensation_clustermap.png")
+    path_cluster=os.path.join(FIGURES_DIR, "04_skills_compensation_clustermap.png")
     cluster_grid.savefig(path_cluster, dpi=300)
     plt.close()
     print(f"[OK] Saved Clustermap to: {path_cluster}")
